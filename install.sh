@@ -7,10 +7,14 @@ case "${unameOut}" in
     *)          OS="UNKNOWN"
 esac
 
-MODDABLE="$(pwd)/deps/moddable"
-IDF_PATH=$(pwd)/deps/esp-idf
+mkdir deps/
+cd deps/
 
-echo $MODDABLE
+git clone -b v4.3 --recursive https://github.com/espressif/esp-idf.git
+git clone -b esp-idf-v4.3 https://github.com/Moddable-OpenSource/moddable.git
+
+MODDABLE="$(pwd)/moddable"
+IDF_PATH=$(pwd)/esp-idf
 
 cd ${MODDABLE}/build/makefiles/${OS}
 make
