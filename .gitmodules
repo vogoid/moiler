@@ -1,0 +1,6 @@
+[submodule "deps/moddable"]
+	path = deps/moddable
+	url = https://github.com/Moddable-OpenSource/moddable.git
+[submodule "deps/esp-idf"]
+	path = deps/esp-idf
+	url = https://github.com/espressif/esp-idf.git
