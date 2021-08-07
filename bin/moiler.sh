@@ -14,5 +14,6 @@ export MODDABLE=$MOILER/deps/moddable
 
 source $IDF_PATH/export.sh
 
-./deps/moddable/build/bin/$OS/release/mcconfig $MOILER/manifest.json -d -m -p esp32
+cd $MOILER
+$MOILER/deps/moddable/build/bin/$OS/release/mcconfig -d -m -p esp32
 
