@@ -1,12 +1,18 @@
 #!/bin/bash
 
-PROJECT_PATH="$(dirname $0)/$(dirname "$(readlink "$0")")"/..
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     OS=lin;;
+    Darwin*)    OS=mac;;
+    *)          OS="UNKNOWN"
+esac
 
-IDF_PATH=$PROJECT_PATH/deps/esp-idf
-MODDABLE=$PROJECT_PATH/deps/moddable
+export MOILER="$(dirname $0)/$(dirname "$(readlink "$0")")"/..
 
-# echo $(pwd)
+export IDF_PATH=$MOILER/deps/esp-idf
+export MODDABLE=$MOILER/deps/moddable
+
 source $IDF_PATH/export.sh
 
-mcconfig -d -m -p esp32
+./deps/moddable/build/bin/$OS/release/mcconfig $MOILER/manifest.json -d -m -p esp32
 
