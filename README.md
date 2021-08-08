@@ -4,18 +4,17 @@
 Moddable.js based framework to easily program esp32 devices with Javascript.
 
 ## Getting Started
-
-```
-npm init moiler-example
-```
-
+First, install Moiler from NPM:
 ```
 npm install moiler
 ```
-
+Create a `main.js` file in your project folder:
 ```
 trace('Hello World!')
 debugger
 ```
-
-
+Connect your ESP32 development board and run:
+```
+npx moiler
+```
+Your code will be compiled and uploaded to your board and the debugger will open.
