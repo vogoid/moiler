@@ -1,6 +1,6 @@
 {
   "name": "@vogoid/moiler",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Moddable.js based framework to easily program esp32 devices with Javascript.",
   "main": "index.js",
   "scripts": {

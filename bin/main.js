@@ -46,7 +46,7 @@ const moddableProcess = execa(
 )
 
 console.log('Setting up...')
-readline.createInterface({ input: moddableProcess.stderr }).on('line', line => {
+readline.createInterface({ input: moddableProcess.stdout }).on('line', line => {
     if (line === 'Done! You can now compile ESP-IDF projects.') {
         console.log('Compiling...')
     }
