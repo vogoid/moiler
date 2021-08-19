@@ -1,5 +1,6 @@
 import {render} from 'ink'
 import fs from 'fs'
+import readline from 'readline'
 import path from 'path'
 import glob from 'glob'
 import execa from 'execa'
@@ -34,10 +35,28 @@ console.log(JSON.stringify(manifest))
 fs.writeFileSync(moilerPath + '/manifest.json', JSON.stringify(manifest));
 
 // run mcconfig
-execa(
-  `source ${idfPath}/export.sh \
+const moddableProcess = execa(
+  `UPLOAD_PORT=/dev/cu.usbserial-01E05E73 \
+   IDF_PATH=${idfPath} \
+   MODDABLE=${moddablePath} \
+   source ${idfPath}/export.sh \
    && cd ${moilerPath} \
    && ${moddablePath}/build/bin/${os}/release/mcconfig -d -m -p esp32`,
   {shell: true}
-).stdout.on('line', line => console.log('what'))
+)
+
+console.log('Setting up...')
+readline.createInterface({ input: moddableProcess.stderr }).on('line', line => {
+    if (line === 'Done! You can now compile ESP-IDF projects.') {
+        console.log('Compiling...')
+    }
+    if (line === 'Uploading stub...') {
+        console.log('Uploading...')
+    }
+    if (line === 'Hard resetting via RTS pin...') {
+        console.log('Running...')
+    }
+    console.log(line)
+})
+
 

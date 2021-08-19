@@ -1,3 +1,5 @@
 #!/bin/bash
 
-node -r esm main.js
+MOILER="$(dirname $0)/$(dirname "$(readlink "$0")")"/..
+
+node -r esm $MOILER/bin/main.js
