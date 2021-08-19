@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/vogoid/moiler#readme",
   "dependencies": {
+    "execa": "^5.1.1",
+    "glob": "^7.1.7",
     "ink": "^3.0.9",
     "react": "^16.14.0"
   },
