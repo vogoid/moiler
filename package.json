@@ -9,7 +9,7 @@
     "postinstall": "./install.sh"
   },
   "bin": {
-    "moiler": "./bin/main.js"
+    "moiler": "./bin/main.mjs"
   },
   "repository": {
     "type": "git",
