@@ -59,4 +59,6 @@ readline.createInterface({ input: moddableProcess.stdout }).on('line', line => {
     console.log(line)
 })
 
-
+readline.createInterface({ input: moddableProcess.stderr }).on('line', line => {
+    console.log(line)
+})
