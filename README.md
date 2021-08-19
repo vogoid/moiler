@@ -1,5 +1,5 @@
 # Moiler
-![npm badge](https://img.shields.io/npm/v/@vogoid/moiler)
+[![npm badge](https://img.shields.io/npm/v/@vogoid/moiler)](https://www.npmjs.com/package/@vogoid/moiler)
 
 Moddable.js based framework to easily program esp32 devices with Javascript.
 
