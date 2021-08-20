@@ -39,14 +39,15 @@ const programBoard = () => {
 
     console.log('Setting up...')
     readline.createInterface({ input: moddableProcess.stdout }).on('line', line => {
-        if (line === 'Done! You can now compile ESP-IDF projects.') {
-            console.log('Compiling...')
-        }
-        if (line === 'Uploading stub...') {
-            console.log('Uploading...')
-        }
-        if (line === 'Hard resetting via RTS pin...') {
-            console.log('Running...')
+        switch (line) {
+            case 'Done! You can now compile ESP-IDF projects.':
+                return console.log('Compiling...')
+            case 'Uploading stub...':
+                return console.log('Uploading...')
+            case 'Hard resetting via RTS pin...':
+                return console.log('Running...')
+            default:
+                break;
         }
         //console.log(line)
     })
