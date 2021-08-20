@@ -7,8 +7,9 @@ case "${unameOut}" in
     *)          OS="UNKNOWN"
 esac
 
-mkdir deps/
-cd deps/
+rm -rf ~/.moiler/
+mkdir ~/.moiler/
+cd ~/.moiler/
 
 git clone -b v4.3 --recursive https://github.com/espressif/esp-idf.git
 git clone -b esp-idf-v4.3 https://github.com/Moddable-OpenSource/moddable.git
