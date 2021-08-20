@@ -2,10 +2,10 @@ import {render} from 'ink'
 import fs from 'fs'
 import readline from 'readline'
 import path from 'path'
-import glob from 'glob'
 import execa from 'execa'
 import {platform} from 'process'
-
+import detectPort from './lib/detectPort'
+import buildManifest from './lib/buildManifest'
 
 const programBoard = () => {
     const projectPath = path.resolve('./')
@@ -15,32 +15,15 @@ const programBoard = () => {
     const moddablePath = buildPath + '/moddable'
 
     const os = platform === 'darwin' ? 'mac' : 'lin'
-    const port = probablePort()
+    const port = detectPort()
 
     if (!port) {
         throw new Error('Could not detect port.')
     }
 
-    const manifestBase = require(moilerPath + '/manifest_base.json')
-
     // generate temp manifest.json from manifest_base.json
-    const projectFiles = glob.sync(`{,!(node_modules)/**/}*.js`)
-    const projectFilesModules = projectFiles.reduce((acc, cur, i) => {
-        const s = cur.replace(".js", '')
-        acc['/' + s] = projectPath + '/' + s
-        return acc
-    }, {})
-
-    const manifest = {
-        ...manifestBase,
-        modules: {
-            '*': [
-                projectPath + '/main.js'
-            ],
-            ...projectFilesModules
-        }
-    }
-
+    const baseManifest = require(moilerPath + '/manifest_base.json')
+    const manifest = buildManifest(baseManifest, projectPath)
     fs.writeFileSync(buildPath + '/manifest.json', JSON.stringify(manifest));
 
     // run mcconfig
@@ -71,12 +54,6 @@ const programBoard = () => {
     readline.createInterface({ input: moddableProcess.stderr }).on('line', line => {
         console.log(line)
     })
-}
-
-export function probablePort() {
-  const regex = new RegExp('(cu|tty)*.(usb|USB)', 'g')
-  const port = fs.readdirSync('/dev/').find((fn) => fn.match(regex))
-  if (port) return '/dev/' + port
 }
 
 programBoard()
