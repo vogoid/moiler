@@ -22,19 +22,20 @@
   },
   "homepage": "https://github.com/vogoid/moiler#readme",
   "dependencies": {
-    "esm": "^3.2.25",
     "execa": "^5.1.1",
     "glob": "^7.1.7",
     "ink": "^3.0.9",
     "react": "^16.14.0"
   },
   "devDependencies": {
-    "@babel/node": "^7.14.9",
-    "@babel/preset-env": "^7.15.0",
-    "@babel/preset-react": "^7.14.5",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "nodemon": "^2.0.12",
     "prettier": "^2.3.2"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
   }
 }

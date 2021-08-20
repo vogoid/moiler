@@ -1,9 +1,13 @@
 import glob from 'glob'
 
-export default function buildManifest(baseManifest, projectPath) {
+const baseManifest = {
+  include: ['$(MODDABLE)/examples/manifest_base.json', '$(PWD)/manifest.json'],
+}
+
+export default function buildManifest(projectPath) {
   const projectFiles = glob.sync(`{,!(node_modules)/**/}*.js`)
   const projectFilesModules = projectFiles.reduce((acc, cur, i) => {
-    const s = cur.replace(".js", '')
+    const s = cur.replace('.js', '')
     acc['/' + s] = projectPath + '/' + s
     return acc
   }, {})
@@ -11,12 +15,10 @@ export default function buildManifest(baseManifest, projectPath) {
   const manifest = {
     ...baseManifest,
     modules: {
-      '*': [
-        projectPath + '/main.js'
-      ],
-      ...projectFilesModules
-    }
+      '*': [projectPath + '/main'],
+      ...projectFilesModules,
+    },
   }
-  
+
   return manifest
 }

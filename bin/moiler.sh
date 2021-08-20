@@ -2,4 +2,4 @@
 
 MOILER="$(dirname $0)/$(dirname "$(readlink "$0")")"/..
 
-node -r esm $MOILER/src/main.js
+node $MOILER/src/main.mjs
