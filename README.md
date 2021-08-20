@@ -6,7 +6,7 @@ Moddable.js based framework to easily program esp32 devices with Javascript.
 ## Getting Started
 First, install Moiler from NPM:
 ```
-npm install moiler
+npm install @vogoid/moiler
 ```
 Create a `main.js` file in your project folder:
 ```
