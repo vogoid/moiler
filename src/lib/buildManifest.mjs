@@ -1,7 +1,11 @@
 import glob from 'glob'
 
 const baseManifest = {
-  include: ['$(MODDABLE)/examples/manifest_base.json', '$(PWD)/manifest.json'],
+  include: [
+    '$(PWD)/manifest.json',
+    '$(MODDABLE)/examples/manifest_base.json',
+    "$(MODULES)/pins/digital/manifest.json"
+  ],
 }
 
 export default function buildManifest(projectPath) {
