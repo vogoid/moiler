@@ -4,7 +4,7 @@ const baseManifest = {
   include: [
     '$(PWD)/manifest.json',
     '$(MODDABLE)/examples/manifest_base.json',
-    "$(MODULES)/pins/digital/manifest.json"
+    '$(MODULES)/pins/digital/manifest.json',
   ],
 }
 
